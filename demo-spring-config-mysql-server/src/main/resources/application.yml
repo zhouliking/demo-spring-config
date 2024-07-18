@@ -1,0 +1,20 @@
+server:
+  port: 8888
+
+spring:
+  profiles:
+    active: jdbc
+  application:
+    name: config-jdbc-server
+  datasource:
+    url: jdbc:mysql://10.x.x.xx:3311/config_db?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&max_query_size=100000000&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  cloud:
+    config:
+      server:
+        jdbc:
+          sql: SELECT key1, value1 from config_properties where APPLICATION=? and PROFILE=? and LABEL=?
+          order: 1
+          sqlWithoutProfile: SELECT key1, value1 from config_properties where APPLICATION=? and LABEL=?

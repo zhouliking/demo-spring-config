@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: application1
+  config:
+    import: "optional:configserver:http://localhost:8888"
+  cloud:
+      fail-fast: true
+  profiles:
+    active: dev
+
+
+# 暴露刷新接口
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh
